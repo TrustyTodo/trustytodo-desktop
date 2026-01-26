@@ -11,8 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: 'ubuntu-22.04'
-            args: ''
+          #- platform: 'ubuntu-22.04'
+          #  args: ''
           - platform: 'windows-latest'
             args: ''
 
@@ -24,12 +24,12 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Checkout project
+        shell: bash
         run: |
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           git clone git@github.com:TrustyTodo/trustytodo-ts.git $GITHUB_WORKSPACE
 
       - name: install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
