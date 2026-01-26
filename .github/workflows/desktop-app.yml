@@ -23,15 +23,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Use PowerShell to get host key
+      - name: Disable SSH key checking
         if: matrix.platform == 'windows-latest'
-        shell: pwsh
+        shell: bash
         run: |
-          & 'C:\Program Files\Git\usr\bin\ssh-keyscan.exe' github.com
-          & git clone git@github.com:TrustyTodo/trustytodo-ts.git $GITHUB_WORKSPACE
+          git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' 
 
       - name: Checkout project
-        if: matrix.platform == 'ubuntu-22.04'
         shell: bash
         run: |
           git clone git@github.com:TrustyTodo/trustytodo-ts.git $GITHUB_WORKSPACE
