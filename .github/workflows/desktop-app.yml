@@ -11,8 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- platform: 'ubuntu-22.04'
-          #  args: ''
+          - platform: 'ubuntu-22.04'
+            args: ''
           - platform: 'windows-latest'
             args: ''
 
@@ -23,7 +23,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Disable SSH key checking
+      - name: Set SSH host key
         if: matrix.platform == 'windows-latest'
         shell: bash
         run: |
