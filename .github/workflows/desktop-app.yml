@@ -23,6 +23,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Use PowerShell to get host key
+        if: matrix.platform == 'windows-latest'
+        shell: pwsh
+        run: |
+          mkdir $env:USERPROFILE\.ssh
+          & 'C:\Program Files\Git\usr\bin\ssh-keyscan.exe' -H github.com >> ~/.ssh/known_hosts
+
       - name: Checkout project
         shell: bash
         run: |
