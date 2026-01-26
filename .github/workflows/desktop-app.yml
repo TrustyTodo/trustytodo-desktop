@@ -27,7 +27,7 @@ jobs:
         if: matrix.platform == 'windows-latest'
         shell: pwsh
         run: |
-          'C:\Program Files\Git\usr\bin\ssh-keyscan.exe' -H github.com >> ~/.ssh/known_hosts
+          & 'C:\Program Files\Git\usr\bin\ssh-keyscan.exe' github.com
 
       - name: Checkout project
         shell: bash
