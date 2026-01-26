@@ -27,7 +27,7 @@ jobs:
         if: matrix.platform == 'windows-latest'
         shell: bash
         run: |
-          git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' 
+          git config --global core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
       - name: Checkout project
         shell: bash
