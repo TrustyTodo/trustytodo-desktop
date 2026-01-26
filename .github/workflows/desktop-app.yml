@@ -25,6 +25,7 @@ jobs:
 
       - name: Checkout project
         run: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           git clone git@github.com:TrustyTodo/trustytodo-ts.git $GITHUB_WORKSPACE
 
       - name: install dependencies (ubuntu only)
