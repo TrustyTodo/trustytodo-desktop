@@ -58,14 +58,12 @@ jobs:
 
       - name: Install pnpm
         uses:  pnpm/action-setup@v4
-        with:
-          cache: true
 
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'pnpm' # Set this to npm, yarn or pnpm.
+          cache: 'pnpm'
 
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable # Set this to dtolnay/rust-toolchain@nightly
@@ -91,6 +89,7 @@ jobs:
           tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
           releaseName: 'App v__VERSION__'
           releaseBody: 'See the assets to download this version and install.'
+          releaseAssetNamePattern: 'TrustyTodo_[arch]_[platform][setup][ext]'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
